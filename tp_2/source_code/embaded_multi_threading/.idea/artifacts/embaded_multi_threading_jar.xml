@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="embaded_multi_threading:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/embaded_multi_threading_jar</output-path>
+    <root id="archive" name="embaded_multi_threading.jar">
+      <element id="module-output" name="embaded_multi_threading_weather_station" />
+    </root>
+  </artifact>
+</component>

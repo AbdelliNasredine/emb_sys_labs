@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_embaded_multi_threading" default="compile.module.embaded_multi_threading">
+  <dirname property="module.embaded_multi_threading.basedir" file="${ant.file.module_embaded_multi_threading}"/>
+  
+  <property name="module.jdk.home.embaded_multi_threading" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.embaded_multi_threading" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.embaded_multi_threading" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.embaded_multi_threading" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="embaded_multi_threading.output.dir" value="${module.embaded_multi_threading.basedir}/out/production/embaded_multi_threading"/>
+  <property name="embaded_multi_threading.testoutput.dir" value="${module.embaded_multi_threading.basedir}/out/test/embaded_multi_threading"/>
+  
+  <path id="embaded_multi_threading.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="embaded_multi_threading.module.production.classpath">
+    <path refid="${module.jdk.classpath.embaded_multi_threading}"/>
+  </path>
+  
+  <path id="embaded_multi_threading.runtime.production.module.classpath">
+    <pathelement location="${embaded_multi_threading.output.dir}"/>
+  </path>
+  
+  <path id="embaded_multi_threading.module.classpath">
+    <path refid="${module.jdk.classpath.embaded_multi_threading}"/>
+    <pathelement location="${embaded_multi_threading.output.dir}"/>
+  </path>
+  
+  <path id="embaded_multi_threading.runtime.module.classpath">
+    <pathelement location="${embaded_multi_threading.testoutput.dir}"/>
+    <pathelement location="${embaded_multi_threading.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.embaded_multi_threading">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.embaded_multi_threading">
+    <patternset refid="excluded.from.module.embaded_multi_threading"/>
+  </patternset>
+  
+  <path id="embaded_multi_threading.module.sourcepath">
+    <dirset dir="${module.embaded_multi_threading.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.embaded_multi_threading" depends="compile.module.embaded_multi_threading.production,compile.module.embaded_multi_threading.tests" description="Compile module embaded_multi_threading"/>
+  
+  <target name="compile.module.embaded_multi_threading.production" depends="register.custom.compilers" description="Compile module embaded_multi_threading; production classes">
+    <mkdir dir="${embaded_multi_threading.output.dir}"/>
+    <javac2 destdir="${embaded_multi_threading.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.embaded_multi_threading}/javac">
+      <compilerarg line="${compiler.args.embaded_multi_threading}"/>
+      <bootclasspath refid="embaded_multi_threading.module.bootclasspath"/>
+      <classpath refid="embaded_multi_threading.module.production.classpath"/>
+      <src refid="embaded_multi_threading.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.embaded_multi_threading"/>
+    </javac2>
+    
+    <copy todir="${embaded_multi_threading.output.dir}">
+      <fileset dir="${module.embaded_multi_threading.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.embaded_multi_threading.tests" depends="register.custom.compilers,compile.module.embaded_multi_threading.production" description="compile module embaded_multi_threading; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.embaded_multi_threading" description="cleanup module">
+    <delete dir="${embaded_multi_threading.output.dir}"/>
+    <delete dir="${embaded_multi_threading.testoutput.dir}"/>
+  </target>
+</project>
