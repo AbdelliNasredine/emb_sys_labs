@@ -8,7 +8,8 @@ app.set("json spaces", 2);
 
 consign()
   .include("models")
-  .include("routes")
+  .then("libs/middlewares.js")
+  .then("routes")
+  .then("libs/boot.js")
   .into(app);
 
-app.listen(PORT, () => console.log(`App running on port ${PORT}`));
