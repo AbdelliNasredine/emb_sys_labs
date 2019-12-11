@@ -7,6 +7,7 @@ const app = express();
 app.set("json spaces", 2);
 
 consign()
+  .include("models")
   .include("routes")
   .into(app);
 
