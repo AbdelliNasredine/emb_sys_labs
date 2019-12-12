@@ -1,5 +1,7 @@
 module.exports = app => {
-  app.listen(app.get("PORT"), () => {
-    console.log(`API starting on localhost:${app.get("PORT")}`);
-  })
-}
+  app.db.sync().done(() => {
+    app.listen(app.get("port"), () => {
+      console.log(`API starting on localhost:${app.get("port")}`);
+    });
+  });
+};
