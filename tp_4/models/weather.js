@@ -1,37 +1,31 @@
-module.exports = app => {
-  return {
-    getAllInformation: callback => {
-      return callback({
-        weatherinformation: [
-          {
-            willaya: "bechar",
-            temprature: 60,
-            humidty: 7,
-            position: {
-              latitude: 1.04231313414,
-              langitude: -0.842996368726387
-            }
-          },
-          {
-            willaya: "bechar",
-            temprature: 60,
-            humidty: 7,
-            position: {
-              latitude: 1.04231313414,
-              langitude: -0.842996368726387
-            }
-          },
-          {
-            willaya: "bechar",
-            temprature: 60,
-            humidty: 7,
-            position: {
-              latitude: 1.04231313414,
-              langitude: -0.842996368726387
-            }
-          }
-        ]
-      });
+module.exports = (sequelize, DataType) => {
+  const Weather = sequelize.define("Weather", {
+    id: {
+      type: DataType.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    willaya: {
+      type: DataType.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
+    temp: {
+      type: DataType.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
+    wind: {
+      type: DataType.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     }
-  };
+  });
+  return Weather;
 };

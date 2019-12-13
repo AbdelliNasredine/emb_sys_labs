@@ -1,8 +1,8 @@
 module.exports = app => {
-  const Weather = app.models.weather;
+  const Weather = app.db.models.Weather;
   app.get("/weatherinfo", (req, res) => {
-    Weather.getAllInformation(info => {
-      res.json(info);
+    Weather.findAll({}).then(winfo => { 
+      res.json({weatherinformation: winfo});
     });
   });
 };
