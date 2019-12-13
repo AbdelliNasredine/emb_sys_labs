@@ -3,7 +3,6 @@ import consign from "consign";
 
 const app = express();
 
-
 consign()
   .include("libs/config.js")
   .then("db.js")

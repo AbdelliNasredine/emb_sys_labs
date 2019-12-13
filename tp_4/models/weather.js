@@ -15,16 +15,10 @@ module.exports = (sequelize, DataType) => {
     temp: {
       type: DataType.INTEGER,
       allowNull: false,
-      validate: {
-        notEmpty: true
-      }
     },
     wind: {
-      type: DataType.STRING,
+      type: DataType.INTEGER,
       allowNull: false,
-      validate: {
-        notEmpty: true
-      }
     }
   });
   return Weather;
