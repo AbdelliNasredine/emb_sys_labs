@@ -12,11 +12,6 @@ code {
     monospace;
 }
 
-.leaflet-container {
-  height: 400px;
-  width: 100%;
-}
-
 /* Flex container */
 /* .flex {
   height: 500px;
