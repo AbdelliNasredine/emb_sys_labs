@@ -18,7 +18,7 @@ module.exports = app => {
           position
         }
       });
-      res.json({ weatherinfo, position });
+      res.json(weatherinfo);
     });
   });
 
