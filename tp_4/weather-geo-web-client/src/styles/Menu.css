@@ -1,27 +1,57 @@
 .Menu-container {
+  display: flex;
+  flex-direction: column;
   z-index: 1;
   position: absolute;
   top: 1rem;
   left: 1rem;
   height: 90%;
   width: 420px;
-  background-color: rgb(255, 255, 255);
-  color: #26323e;
-  border-radius: .25rem;
-  box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, .15);
+  background-color: rgb(49, 49, 49);
+  color: rgb(167, 167, 167);
+  border-radius: 0.5rem;
+  box-shadow: 3px 3px 6px 2px rgba(0, 0, 0, 0.15);
 }
 
 .Menu-header {
   padding: 1rem;
-  background-color: #f4f7fc;
-  border-top-left-radius: .25rem;
-  border-top-right-radius: .25rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom: 1px solid rgba(201, 201, 201, 0.192);
 }
 
 .Menu-title {
+  color: white;
   margin: 0;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 22px;
+}
+
+.Menu-text-small {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.Menu-text-medium {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.Menu-title,
+.Menu-text-small,
+.Menu-text-medium {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.Menu-app-description {
+  font-family: sans-serif;
+  margin-top: 12px;
+  text-align: justify;
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 0;
 }
 
 .Menu-app-icon {
@@ -30,9 +60,38 @@
   margin-right: 1rem;
 }
 
-.Menu-app-description {
-  margin-top: 12px;
-  text-align: justify;
-  font-size: 14px;
-  line-height: 18px;
+.Menu-main {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 201, 201, 0.192);
+}
+
+.Menu-main::-webkit-scrollbar {
+  width: .25rem;
+}
+
+.Menu-main::-webkit-scrollbar-thumb {
+  background-color: rgba(201, 201, 201, 0.192);
+  border-radius: .25rem;
+}
+
+.Menu-cities {
+  padding: 0;
+}
+
+.Menu-citie {
+  list-style: none;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.Menu-citie:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
