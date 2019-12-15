@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Component } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import React, { Component } from "react";
+import ReactMapGL, { Marker } from "react-map-gl";
 import * as weatherData from "../data/test.json";
 
 import "../styles/WeatherMap.css";

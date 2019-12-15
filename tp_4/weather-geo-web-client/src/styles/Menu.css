@@ -91,7 +91,8 @@
   transition: background-color 0.1s ease-in-out;
 }
 
-.Menu-citie:hover {
+.Menu-citie:hover, .active {
+  color: white;
   background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
