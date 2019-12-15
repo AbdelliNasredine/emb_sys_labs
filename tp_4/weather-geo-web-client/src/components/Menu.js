@@ -1,5 +1,5 @@
 import React from "react";
-
+import cities from "../data/cities.test.json";
 import "../styles/Menu.css";
 
 function Menu() {
@@ -17,24 +17,11 @@ function Menu() {
       <div className="Menu-main">
         <span className="Menu-text-medium">Algerie's cities</span>
         <ul className="Menu-cities">
-          <li className="Menu-citie">Alger</li>
-          <li className="Menu-citie">Oran</li>
-          <li className="Menu-citie">Bechar</li>
-          <li className="Menu-citie">Ouargla</li>
-          <li className="Menu-citie">Anaba</li>
-          <li className="Menu-citie">Sétife</li>
-          <li className="Menu-citie">Saida</li>
-          <li className="Menu-citie">Adrar</li>
-          <li className="Menu-citie">Mascara</li>
-          <li className="Menu-citie">Alger</li>
-          <li className="Menu-citie">Oran</li>
-          <li className="Menu-citie">Bechar</li>
-          <li className="Menu-citie">Ouargla</li>
-          <li className="Menu-citie">Anaba</li>
-          <li className="Menu-citie">Sétife</li>
-          <li className="Menu-citie">Saida</li>
-          <li className="Menu-citie">Adrar</li>
-          <li className="Menu-citie">Mascara</li>
+          {cities.map(c => (
+            <li key={c.willaya} className="Menu-citie">
+              {c.willaya}
+            </li>
+          ))}
         </ul>
       </div>
     </div>

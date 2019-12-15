@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
-import * as weatherData from "../data/test.json";
 
+import cities from "../data/cities.test.json";
 import "../styles/WeatherMap.css";
 
 /* 
@@ -20,7 +20,7 @@ export default class MapboxWeatherMap extends Component {
       height: "100vh",
       zoom: 4.6
     },
-    stations: weatherData["stations"]
+    cities
   };
   render() {
     return (
@@ -30,11 +30,11 @@ export default class MapboxWeatherMap extends Component {
         mapStyle="mapbox://styles/nas-embad/ck474on5i11qq1cpp3r0xo50x?optimize=true"
         onViewportChange={viewport => this.setState({ viewport })}
       >
-        {this.state.stations.map(st => (
+        {this.state.cities.map(c => (
           <Marker
-            key={st.willaya}
-            latitude={st.position.lat}
-            longitude={st.position.lng}
+            key={c.willaya}
+            latitude={c.position.lat}
+            longitude={c.position.lng}
           >
             <img
               className="WeatherMap-marker"

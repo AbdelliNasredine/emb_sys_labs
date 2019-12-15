@@ -1,0 +1,29 @@
+[{
+    "willaya": "Adrar",
+    "position": {
+      "lat": 28.1918767,
+      "lng": -0.2642498
+    }
+  },
+  {
+    "willaya": "Chlef",
+    "position": {
+      "lat": 36.1370738,
+      "lng": 1.3147095
+    }
+  },
+  {
+    "willaya": "Oran",
+    "position": {
+      "lat": 35.6921892,
+      "lng": -0.6298704
+    }
+  },
+  {
+    "willaya": "bechar",
+    "position": {
+      "lat": 31.6238098,
+      "lng": -2.2162443
+    }
+  }
+]
