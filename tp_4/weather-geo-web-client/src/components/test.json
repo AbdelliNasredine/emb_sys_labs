@@ -1,0 +1,17 @@
+{
+  "stations": [{
+      "willaya": "alger",
+      "position": {
+        "lat": 36.753889,
+        "lng": 3.058889
+      }
+    },
+    {
+      "willaya": "bechar",
+      "position": {
+        "lat": 31.6238098,
+        "lng": -2.2162443
+      }
+    }
+  ]
+}

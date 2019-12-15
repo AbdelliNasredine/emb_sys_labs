@@ -1,17 +1,18 @@
-import React from 'react';
+import React from "react";
 
 import "../styles/Menu.css";
 
 function Menu() {
   return (
     <div className="Menu-container">
-      <h2 className="Menu-title">Weather App v1 - web client</h2>
-      <ul>
-        <li>Item 1</li>
-        <li>Item 1</li>
-        <li>Item 1</li>
-        <li>Item 1</li>
-      </ul>
+      <div className="Menu-header">
+        <h2 className="Menu-title">Algeria weather</h2>
+        <p className="Menu-app-description">
+          This application is the front end of Weather Information System REST
+          API , you can see all the weather data of the major algeria's cities,
+          Hope you like it
+        </p>
+      </div>
     </div>
   );
 }

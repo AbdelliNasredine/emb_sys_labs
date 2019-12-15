@@ -3,3 +3,8 @@
   width: 100vw;
   overflow: hidden;
 }
+
+.WeatherMap-marker {
+  width: 24px;
+  height: 24px;
+}
