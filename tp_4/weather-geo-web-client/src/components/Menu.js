@@ -1,31 +1,66 @@
-import React from "react";
+import React, { Component } from "react";
 import cities from "../data/cities.test.json";
 import "../styles/Menu.css";
 
-function Menu() {
-  return (
-    <div className="Menu-container">
-      <div className="Menu-header">
-        <span className="Menu-text-small">App made by abdelli Nasredine</span>
-        <h2 className="Menu-title">Algeria weather</h2>
-        <p className="Menu-app-description">
-          This application is the front end of Weather Information System REST
-          API , you can see all the weather data of the major algeria's cities,
-          Hope you like it
-        </p>
-      </div>
-      <div className="Menu-main">
-        <span className="Menu-text-medium">Algerie's cities</span>
-        <ul className="Menu-cities">
-          {cities.map(c => (
-            <li key={c.willaya} className="Menu-citie">
-              {c.willaya}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
+export default class Menu extends Component {
+  state = {
+    selectedId: null
+  };
 
-export default Menu;
+  constructor() {
+    super();
+    this.handleWillayaClick = this.handleWillayaClick.bind(this);
+  }
+
+  handleWillayaClick(event) {
+    const id = event.target.id;
+    console.log(id);
+    this.setState({ selectedId: id });
+  }
+  render() {
+    const selected = this.state.selectedId;
+    return (
+      <div className="Menu-container">
+        <div className="Menu-header">
+          <span className="Menu-text-small">App made by abdelli Nasredine</span>
+          <h2 className="Menu-title">Algeria weather</h2>
+          <p className="Menu-app-description">
+            This application is the front end of Weather Information System REST
+            API , you can see all the weather data of the major algeria's
+            cities, Hope you like it
+          </p>
+        </div>
+        <div className="Menu-main">
+          <span className="Menu-text-medium">Algerie's cities</span>
+          <ul className="Menu-cities">
+            {cities.map(c => {
+              if (selected == c.code) {
+                return (
+                  <li
+                    key={c.code}
+                    id={c.code}
+                    className="Menu-citie active"
+                    onClick={this.handleWillayaClick}
+                  >
+                    {c.willaya}
+                    <div>Hello I am Selected!</div>
+                  </li>
+                );
+              }
+              return (
+                <li
+                  key={c.code}
+                  id={c.code}
+                  className="Menu-citie"
+                  onClick={this.handleWillayaClick}
+                >
+                  {c.willaya}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    );
+  }
+}
