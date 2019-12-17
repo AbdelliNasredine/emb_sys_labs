@@ -27,7 +27,7 @@ module.exports = app => {
   app.get("/gen/:number", (req, res) => {
     let number = req.param("number");
     console.log(number);
-    while (number != 0) {
+    while (number > 0) {
       Weather.create({
         willaya: cities[0].name,
         temp: Math.floor(Math.random() * 60),
