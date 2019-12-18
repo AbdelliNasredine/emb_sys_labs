@@ -4,14 +4,27 @@ import WillayaInformation from "./WillayaInformation";
 import cities from "../data/cities.test.json";
 import "../styles/Menu.css";
 
+const API_BASE_URL = "http://localhost:8000";
+
 export default class Menu extends Component {
   state = {
-    selectedId: null
+    selectedId: null,
+    isLoading: false,
+    data: []
   };
 
   constructor() {
     super();
     this.handleWillayaClick = this.handleWillayaClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    fetch(`${API_BASE_URL}/wilaya/all`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
   }
 
   handleWillayaClick(event) {
@@ -20,7 +33,7 @@ export default class Menu extends Component {
     this.setState({ selectedId: id });
   }
   render() {
-    const selected = this.state.selectedId;
+    const { selected, isLoading } = this.state;
     return (
       <div className="Menu-container">
         <div className="Menu-header">
@@ -34,33 +47,37 @@ export default class Menu extends Component {
         </div>
         <div className="Menu-main">
           <span className="Menu-text-medium">Algerie's cities</span>
-          <ul className="Menu-cities">
-            {cities.map(c => {
-              if (selected == c.code) {
+          {isLoading == true ? (
+            <div className="Menu-loading"></div>
+          ) : (
+            <ul className="Menu-cities">
+              {cities.map(c => {
+                if (selected == c.code) {
+                  return (
+                    <li
+                      key={c.code}
+                      id={c.code}
+                      className="Menu-citie active"
+                      onClick={this.handleWillayaClick}
+                    >
+                      {c.willaya}
+                      <WillayaInformation {...c} />
+                    </li>
+                  );
+                }
                 return (
                   <li
                     key={c.code}
                     id={c.code}
-                    className="Menu-citie active"
+                    className="Menu-citie"
                     onClick={this.handleWillayaClick}
                   >
                     {c.willaya}
-                    <WillayaInformation {...c}/>
                   </li>
                 );
-              }
-              return (
-                <li
-                  key={c.code}
-                  id={c.code}
-                  className="Menu-citie"
-                  onClick={this.handleWillayaClick}
-                >
-                  {c.willaya}
-                </li>
-              );
-            })}
-          </ul>
+              })}
+            </ul>
+          )}
         </div>
       </div>
     );
