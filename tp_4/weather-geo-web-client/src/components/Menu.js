@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import WillayaInformation from "./WillayaInformation";
+
 import cities from "../data/cities.test.json";
 import "../styles/Menu.css";
 
@@ -43,7 +45,7 @@ export default class Menu extends Component {
                     onClick={this.handleWillayaClick}
                   >
                     {c.willaya}
-                    <div>Hello I am Selected!</div>
+                    <WillayaInformation {...c}/>
                   </li>
                 );
               }
