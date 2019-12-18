@@ -23,17 +23,17 @@ export default class Menu extends Component {
     fetch(`${API_BASE_URL}/wilaya/all`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
+        this.setState({isLoading: false, data: data.data});
       });
   }
 
   handleWillayaClick(event) {
     const id = event.target.id;
-    console.log(id);
     this.setState({ selectedId: id });
   }
   render() {
-    const { selected, isLoading } = this.state;
+    const { selectedId, isLoading, data } = this.state;
     return (
       <div className="Menu-container">
         <div className="Menu-header">
@@ -51,28 +51,28 @@ export default class Menu extends Component {
             <div className="Menu-loading"></div>
           ) : (
             <ul className="Menu-cities">
-              {cities.map(c => {
-                if (selected == c.code) {
+              {data.map((wilaya, idx) => {
+                if (selectedId == wilaya.code) {
                   return (
                     <li
-                      key={c.code}
-                      id={c.code}
+                      key={idx}
+                      id={wilaya.code}
                       className="Menu-citie active"
                       onClick={this.handleWillayaClick}
                     >
-                      {c.willaya}
-                      <WillayaInformation {...c} />
+                      {wilaya.name}
+                      <WillayaInformation {...wilaya} />
                     </li>
                   );
                 }
                 return (
                   <li
-                    key={c.code}
-                    id={c.code}
+                    key={idx}
+                    id={wilaya.code}
                     className="Menu-citie"
                     onClick={this.handleWillayaClick}
                   >
-                    {c.willaya}
+                    {wilaya.name}
                   </li>
                 );
               })}
