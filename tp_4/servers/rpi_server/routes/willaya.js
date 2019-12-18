@@ -8,7 +8,7 @@ module.exports = app => {
   app.get("/wilaya/:code", (req, res) => {
     const code = req.param("code");
     const willaya = willayas.filter((w) => w.code == code);
-    if(willaya.length) return res.json({ status: "succes", data: willayas});
+    if(willaya.length) return res.json({ status: "succes", data: willaya});
     return res.json({ status: "Error", msg: `Couldn't find willaya with code = ${code}`});
   });
 }
