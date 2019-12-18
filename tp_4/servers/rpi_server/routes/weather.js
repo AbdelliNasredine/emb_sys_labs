@@ -49,5 +49,4 @@ module.exports = app => {
 
   // /delete/all route is to delete all the data
   // found in database
-  // app.get("/delete/all")
 };
