@@ -49,4 +49,9 @@ module.exports = app => {
 
   // /delete/all route is to delete all the data
   // found in database
+  app.get("/delete/all", (req, res) => {
+    Weather.destroy({truncate: true}).then(nb => {
+      res.json({msg: `${nb} record${nb != 0 ? "s" : ""} destroyed`});
+    });
+  });
 };
