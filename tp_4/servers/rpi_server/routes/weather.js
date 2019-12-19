@@ -8,18 +8,28 @@ module.exports = app => {
   // database(weather info table)
   app.get("/show", (req, res) => {
     Weather.findAll({}).then(winfo => {
-      const willaya = cities[0];
-      const position = {
-        latitude: willaya.lat,
-        longitude: willaya.lon
-      };
-      const weatherinfo = winfo.map(station => {
-        return {
-          station,
-          position
+      console.log(winfo, typeof winfo);
+      if (winfo.length == 0)
+        res.json({
+          status: "database is empty",
+          msg:
+            "to generate new data, you may go tp /gen/{number}" +
+            "to generate {number} random records"
+        });
+      else {
+        const willaya = cities[0];
+        const position = {
+          latitude: willaya.lat,
+          longitude: willaya.lon
         };
-      });
-      res.json(weatherinfo);
+        const weatherinfo = winfo.map(station => {
+          return {
+            station,
+            position
+          };
+        });
+        res.json(weatherinfo);
+      }
     });
   });
 
@@ -48,10 +58,15 @@ module.exports = app => {
   });
 
   // /delete/all route is to delete all the data
-  // found in database
+  // found in database, making it empty
   app.get("/delete/all", (req, res) => {
-    Weather.destroy({truncate: true}).then(nb => {
-      res.json({msg: `${nb} record${nb != 0 ? "s" : ""} destroyed`});
+    Weather.destroy({ truncate: true }).then(nb => {
+      res.json({
+        status: `${nb} record${nb != 0 ? "s" : ""} destroyed`,
+        msg:
+          "to generate new data, you may go tp /gen/{number}" +
+          "to generate {number} random records"
+      });
     });
   });
 };
