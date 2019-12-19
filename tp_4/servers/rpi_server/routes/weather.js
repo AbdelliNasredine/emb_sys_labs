@@ -1,14 +1,15 @@
 module.exports = app => {
   // weather model (weather_info table)
   const Weather = app.db.models.Weather;
-  const cities = require("../libs/cities.js");
+  const willayas = require("../libs/cities.js");
   const random = require("../libs/random.js");
+  const getW = (name) => willayas.filter(w => w.name == name)[0];
 
   // /show is used to see the sqlite
   // database(weather info table)
   app.get("/show", (req, res) => {
     Weather.findAll({}).then(winfo => {
-      console.log(winfo, typeof winfo);
+      //console.log(winfo, typeof winfo);
       if (winfo.length == 0)
         res.json({
           status: "database is empty",
@@ -17,15 +18,13 @@ module.exports = app => {
             "to generate {number} random records"
         });
       else {
-        const willaya = cities[0];
-        const position = {
-          latitude: willaya.lat,
-          longitude: willaya.lon
-        };
-        const weatherinfo = winfo.map(station => {
+        const weatherinfo = winfo.map(s => {
           return {
-            station,
-            position
+            willaya: s.willaya,
+            temperature: s.temp,
+            wind: s.wind,
+            latitude: getW(s.willaya).lat,
+            longitude: getW(s.willaya).lon
           };
         });
         res.json(weatherinfo);
