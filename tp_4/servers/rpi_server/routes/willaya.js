@@ -2,7 +2,10 @@ module.exports = app => {
   const willayas = require("../libs/cities");
 
   // get al the willayas list with thier geo cords
-  app.get("/wilaya/all", (req, res) => res.json({ status: "succes", data: willayas}));
+  app.get("/wilaya/all", (req, res) => {
+    console.log(`/wilaya/all: HTTP - GET from ${req.ip}`);
+    return res.json({ status: "succes", data: willayas})
+  });
 
   // get a specific willaya by code 
   app.get("/wilaya/:code", (req, res) => {
