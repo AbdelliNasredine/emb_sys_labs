@@ -1,10 +1,10 @@
 const cities = require("../libs/cities.js");
-const _r = (nb) =>  Math.floor(Math.random() * nb);
+const _u = (nb) =>  Math.floor(Math.random() * nb);
 
 module.exports = {
-  willaya: () => cities[_r(cities.length)].name,
-  temperature: () => _r(60),
-  wind: () => _r(100),
-  humidity: () => _r(1),
-  humidity: () => _r(1),
+  willaya: () => cities[_u(cities.length)].name,
+  temperature: () => _u(60),
+  wind: () => _u(40),
+  pressure: () => _u(1600),
+  humidity: () => _u(100),
 }

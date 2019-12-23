@@ -8,10 +8,10 @@ module.exports = app => {
   });
 
   // get a specific willaya by code 
-  app.get("/wilaya/:code", (req, res) => {
-    const code = req.param("code");
-    const willaya = willayas.filter((w) => w.code == code);
+  app.get("/wilaya/:name", (req, res) => {
+    const code = req.param("name");
+    const willaya = willayas.filter((w) => w.name == name);
     if(willaya.length) return res.json({ status: "succes", data: willaya});
-    return res.json({ status: "Error", msg: `Couldn't find willaya with code = ${code}`});
+    return res.json({ status: "Error", msg: `Couldn't find willaya with name = ${code}`});
   });
 }
