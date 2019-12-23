@@ -14,11 +14,19 @@ module.exports = (sequelize, DataType) => {
     },
     temp: {
       type: DataType.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     wind: {
       type: DataType.INTEGER,
-      allowNull: false,
+      allowNull: false
+    },
+    pressure: {
+      type: DataType.INTEGER,
+      allowNull: false
+    },
+    humidity: {
+      type: DataType.INTEGER,
+      allowNull: false
     }
   });
   return Weather;
