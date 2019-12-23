@@ -1,24 +1,34 @@
 module.exports = app => {
   // weather model (weather_info table)
   const Weather = app.db.models.Weather;
-  const cities = require("../libs/cities.js");
+  const willayas = require("../libs/cities.js");
+  const random = require("../libs/random.js");
+  const getW = (name) => willayas.filter(w => w.name == name)[0];
 
   // /show is used to see the sqlite
   // database(weather info table)
   app.get("/show", (req, res) => {
     Weather.findAll({}).then(winfo => {
-      const willaya = cities[0];
-      const position = {
-        latitude: willaya.lat,
-        longitude: willaya.lon
-      };
-      const weatherinfo = winfo.map(station => {
-        return {
-          station,
-          position
-        }
-      });
-      res.json(weatherinfo);
+      //console.log(winfo, typeof winfo);
+      if (winfo.length == 0)
+        res.json({
+          status: "database is empty",
+          msg:
+            "to generate new data, you may go tp /gen/{number}" +
+            "to generate {number} random records"
+        });
+      else {
+        const weatherinfo = winfo.map(s => {
+          return {
+            willaya: s.willaya,
+            temperature: s.temp,
+            wind: s.wind,
+            latitude: getW(s.willaya).lat,
+            longitude: getW(s.willaya).lon
+          };
+        });
+        res.json(weatherinfo);
+      }
     });
   });
 
@@ -26,17 +36,36 @@ module.exports = app => {
   // random weather information
   app.get("/gen/:number", (req, res) => {
     let number = req.param("number");
-    console.log(number);
-    while (number > 0) {
-      Weather.create({
-        willaya: cities[0].name,
-        temp: Math.floor(Math.random() * 60),
-        wind: Math.floor(Math.random() * 100)
-      }).then(winfo => {
-        console.log(`new weather info added with id ${winfo.id}`);
+    if (number < 0)
+      res.json({
+        err: "wrong parameter",
+        description: `${number} is negative, it should be positive`
       });
-      number--;
+    else {
+      while (number > 0) {
+        Weather.create({
+          willaya: random.willaya(),
+          temp: random.temperature(),
+          wind: random.wind()
+        }).then(winfo => {
+          console.log(`new weather_data added with id ${winfo.id}`);
+        });
+        number--;
+      }
+      res.redirect("/show");
     }
-    res.redirect("/show");
+  });
+
+  // /delete/all route is to delete all the data
+  // found in database, making it empty
+  app.get("/delete/all", (req, res) => {
+    Weather.destroy({ truncate: true }).then(nb => {
+      res.json({
+        status: `${nb} record${nb != 0 ? "s" : ""} destroyed`,
+        msg:
+          "to generate new data, you may go tp /gen/{number}" +
+          "to generate {number} random records"
+      });
+    });
   });
 };
