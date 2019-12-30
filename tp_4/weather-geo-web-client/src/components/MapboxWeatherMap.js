@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
+import CustomMarker from "./CustomMarker";
 
 import cities from "../data/cities.test.json";
 import "../styles/WeatherMap.css";
@@ -30,8 +31,8 @@ export default class MapboxWeatherMap extends Component {
         mapStyle="mapbox://styles/nas-embad/ck474on5i11qq1cpp3r0xo50x?optimize=true"
         onViewportChange={viewport => this.setState({ viewport })}
       >
-        {this.state.cities.map(c => (
-          <Marker
+      {this.state.cities.map(c => (
+          /*<Marker
             key={c.willaya}
             latitude={c.position.lat}
             longitude={c.position.lng}
@@ -41,8 +42,13 @@ export default class MapboxWeatherMap extends Component {
               src="/marker.png"
               alt="Marker Icon"
             />
-          </Marker>
-        ))}
+          </Marker>*/
+          <CustomMarker 
+            latitude={c.position.lat}
+            longitude={c.position.lng}
+            name={c.willaya}
+          />
+        ))} 
       </ReactMapGL>
     );
   }
