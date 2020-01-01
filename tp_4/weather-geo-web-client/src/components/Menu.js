@@ -24,6 +24,14 @@ export default class Menu extends Component {
       .then(res => res.json())
       .then(data => {
         // console.log(data);
+        data.data.forEach(w => {
+          //console.log(w);
+          fetch(`${API_BASE_URL}/show/${w.name}`)
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+            });
+        });
         this.setState({isLoading: false, data: data.data});
       });
   }

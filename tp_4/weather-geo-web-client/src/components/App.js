@@ -4,14 +4,11 @@ import Menu from "./Menu";
 
 import "../styles/App.css";
 
-export default class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Menu />
-        <MapboxWeatherMap/>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div className="App">
+    {/* <Menu /> */}
+    <MapboxWeatherMap />
+  </div>
+);
 
+export default App;
