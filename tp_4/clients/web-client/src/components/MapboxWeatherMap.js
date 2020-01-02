@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 import WillayaInformation from "./WillayaInformation";
+import Loader from "./Loader";
 
 import cities from "../data/cities.test.json";
 import "../styles/WeatherMap.css";
@@ -22,8 +23,13 @@ export default class MapboxWeatherMap extends Component {
       zoom: 4.6
     },
     cities,
-    showCode: null
+    showCode: null,
+    isLoading: true
   };
+
+  componentDidMount() { 
+    this.setState({isLoading: false});
+  }
 
   onClickHandler = (code) => {
     console.log(code);
@@ -31,8 +37,8 @@ export default class MapboxWeatherMap extends Component {
   }
 
   render() {
-    const {showCode} = this.state
-    return (
+    const {showCode, isLoading} = this.state
+    return isLoading ? <Loader/> : (
       <ReactMapGL
         {...this.state.viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

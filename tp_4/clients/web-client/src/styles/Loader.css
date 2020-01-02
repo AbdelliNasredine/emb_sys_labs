@@ -1,0 +1,20 @@
+.Loader {
+  position: absolute;
+  top: calc(50% - 1rem);
+  left: calc(50% - 1rem);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: .25rem solid #03a9f4;
+  border-color: #03a9f4 rgba(201, 201, 201, 0.192) rgba(201, 201, 201, 0.192) rgba(201, 201, 201, 0.192);
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
