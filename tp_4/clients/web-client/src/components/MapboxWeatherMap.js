@@ -21,9 +21,17 @@ export default class MapboxWeatherMap extends Component {
       height: "100vh",
       zoom: 4.6
     },
-    cities
+    cities,
+    showCode: null
   };
+
+  onClickHandler = (code) => {
+    console.log(code);
+    this.setState({showCode: code});
+  }
+
   render() {
+    const {showCode} = this.state
     return (
       <ReactMapGL
         {...this.state.viewport}
@@ -37,9 +45,12 @@ export default class MapboxWeatherMap extends Component {
             latitude={c.position.lat}
             longitude={c.position.lng}
           >
+            {console.log(c.code === showCode , c.code)}
             <WillayaInformation 
               code={c.code}
               name={c.willaya}
+              isvisible={c.code === showCode}
+              onClickHandler={this.onClickHandler}
             />
           </Marker>
         ))}

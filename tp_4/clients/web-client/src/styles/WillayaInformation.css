@@ -2,25 +2,48 @@
   display: flex;
   flex-direction: column;
   background-color: rgb(65, 65, 65);
+  cursor: pointer;
+  transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border-radius: .5rem;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0,.2);
+}
+
+.WillayaInformation:hover {
+  transform: scale(1.2);
+  transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .WillayaInformation .top {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .WillayaInformation .rest {
   display: none;
+  list-style: none;
+  padding: .5rem;
+}
+
+.show{
+  display: block !important;
 }
 
 .WillayaInformation .code {
   background: rgb(40, 149, 185);
   color: white;
   padding: 0 .25rem;
+  align-self: flex-start;
 } 
 
 .WillayaInformation .name {
+  flex: 1;
   padding: 0 .25rem;
-  color: rgb(145, 145, 145);
+  color: rgb(173, 173, 173);
+  text-align: center;
+}
+
+.WillayaInformation .rest .item{
+  display: flex;
+  font-size: 14px;
+  color: white;
 }

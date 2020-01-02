@@ -7,14 +7,18 @@ export default class Willaya extends Component {
     super();
   }
 
+  onClick = () => {
+    this.props.onClickHandler(this.props.code);
+  }
+
   render() {
     return (
-      <div className="WillayaInformation" title={this.props.name}>
+      <div className="WillayaInformation" title={this.props.name} onClick={this.onClick}>
         <div className="top">
           <span className="code">{this.props.code}</span>
           <span className="name">{this.props.name}</span>
         </div>
-        <div className="rest">
+        <div className={this.props.isvisible ? "rest show" : "rest"}>
           <li className="item">
             <span>Temp:</span> 32°c
           </li>
