@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
+import WillayaInformation from "./WillayaInformation";
 
 import cities from "../data/cities.test.json";
 import "../styles/WeatherMap.css";
@@ -36,10 +37,9 @@ export default class MapboxWeatherMap extends Component {
             latitude={c.position.lat}
             longitude={c.position.lng}
           >
-            <img
-              className="WeatherMap-marker"
-              src="/marker.png"
-              alt="Marker Icon"
+            <WillayaInformation 
+              code={c.code}
+              name={c.willaya}
             />
           </Marker>
         ))}

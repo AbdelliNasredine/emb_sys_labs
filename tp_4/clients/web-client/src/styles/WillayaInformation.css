@@ -1,45 +1,26 @@
-.WillayaInformation {
-  padding: 1rem;
+.WillayaInformation{
   display: flex;
   flex-direction: column;
+  background-color: rgb(65, 65, 65);
 }
 
-.WillayaInformation .item {
-  margin-bottom: 0.5rem;
-  margin-left: 1rem;
-  position: relative;
+.WillayaInformation .top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.WillayaInformation .item::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 0.75rem;
-  height: 0.08rem;
-  margin-left: -1rem;
-  background-color: rgba(201, 201, 201, 0.192);
+.WillayaInformation .rest {
+  display: none;
 }
 
-.WillayaInformation .item::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 0.08rem;
-  height: calc(100% + 0.5rem);
-  margin-left: -1rem;
-  background-color: rgba(201, 201, 201, 0.192);
-}
+.WillayaInformation .code {
+  background: rgb(40, 149, 185);
+  color: white;
+  padding: 0 .25rem;
+} 
 
-.WillayaInformation .item span {
-  font-family: "Josefin Sans", sans-serif;
-  font-weight: 700;
-  color: #03a9f4;
-}
-
-.WillayaInformation .item:last-child {
-  margin-bottom: 0;
-}
-
-.WillayaInformation .item:last-child::after {
-  height: 50%;
+.WillayaInformation .name {
+  padding: 0 .25rem;
+  color: rgb(145, 145, 145);
 }
