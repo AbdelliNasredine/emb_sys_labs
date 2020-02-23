@@ -6,13 +6,6 @@ import Loader from "./Loader";
 import cities from "../data/cities.test.json";
 import "../styles/WeatherMap.css";
 
-/* 
-  center of DZ
-    -> latitude  : 28.577
-    -> longitude : 4.110  
-    -> zoom      : 4.6
-*/
-
 export default class MapboxWeatherMap extends Component {
   state = {
     viewport: {
@@ -27,18 +20,20 @@ export default class MapboxWeatherMap extends Component {
     isLoading: true
   };
 
-  componentDidMount() { 
-    this.setState({isLoading: false});
+  componentDidMount() {
+    this.setState({ isLoading: false });
   }
 
-  onClickHandler = (code) => {
+  onClickHandler = code => {
     console.log(code);
-    this.setState({showCode: code});
-  }
+    this.setState({ showCode: code });
+  };
 
   render() {
-    const {showCode, isLoading} = this.state
-    return isLoading ? <Loader/> : (
+    const { showCode, isLoading } = this.state;
+    return isLoading ? (
+      <Loader />
+    ) : (
       <ReactMapGL
         {...this.state.viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -51,8 +46,8 @@ export default class MapboxWeatherMap extends Component {
             latitude={c.position.lat}
             longitude={c.position.lng}
           >
-            {console.log(c.code === showCode , c.code)}
-            <WillayaInformation 
+            {console.log(c.code === showCode, c.code)}
+            <WillayaInformation
               code={c.code}
               name={c.willaya}
               isvisible={c.code === showCode}
@@ -64,4 +59,3 @@ export default class MapboxWeatherMap extends Component {
     );
   }
 }
-

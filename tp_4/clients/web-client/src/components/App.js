@@ -6,7 +6,7 @@ import "../styles/App.css";
 
 const App = () => (
   <div className="App">
-    {/* <Menu /> */}
+    <Menu />
     <MapboxWeatherMap />
   </div>
 );
